@@ -7,11 +7,12 @@
         public static int guess;
         public static int TossInt;
         public static int TossResult;
+        public static char Continue = 'y';
         static void Main(string[] args)
         { 
             int balance = 5000;
 
-            for (int i = 0; i < 10; i++)
+            while (Continue == 'y')
             {
                 WriteLine("Welcome to the coin toss! Please enter your wager!");
                 WriteLine("Starting Balance: " + balance);
@@ -30,9 +31,9 @@
                     balance = balance -= wager;
                     WriteLine("Your new balance is: " + balance);
                 }
+                Replay();
 
-            }
-            
+            }            
         }
 
         public static int HeadOrTail()
@@ -56,6 +57,13 @@
             var rand = new Random();
             TossResult = rand.Next(2);
             return TossResult;
+        }
+
+        public static char Replay()
+        {
+            WriteLine("Would you like to play again? Y/N");
+            Continue = char.Parse(ReadLine().ToLower());
+            return Continue;
         }
     }
 }
